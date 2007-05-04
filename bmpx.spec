@@ -51,7 +51,7 @@ BuildRequires:	libalsa-devel
 BuildRequires:	sqlite3-devel
 BuildRequires:	sidplay-devel
 BuildRequires:  libofa-devel
-BuildRequires:  gaim-devel
+#BuildRequires:  gaim-devel
 BuildRequires:	flex bison
 BuildRequires:	zip
 BuildRequires:	desktop-file-utils
@@ -97,10 +97,11 @@ Devel library for BMPX.
 %setup -q -n %fname
 
 %build
-%configure2_5x --enable-hal --enable-ofa --enable-sid --enable-gaim \
+%configure2_5x --enable-hal --enable-ofa --enable-sid \
 %if %build_plf
  --enable-mp4v2 --enable-moodriver
 %endif
+#--enable-gaim
 
 %make
 
