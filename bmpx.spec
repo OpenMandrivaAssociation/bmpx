@@ -5,7 +5,7 @@
 %if %build_plf
 %define distsuffix plf
 %endif
-%define pre 0
+%define pre pre1
 %if %pre
 %define rel 0.%pre.1
 %define fname %name-%version%pre
@@ -16,7 +16,7 @@
 
 Summary:	Next generation Beep Media Player
 Name:		bmpx
-Version:	0.36.1
+Version:	0.40.0
 Release:	%mkrel %rel
 License:	GPL
 Group:		Sound
