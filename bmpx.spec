@@ -46,6 +46,7 @@ BuildRequires:	gamin-devel
 BuildRequires:	ImageMagick
 BuildRequires:	curl-devel
 BuildRequires:	neon0.26-devel
+BuildRequires:  libmusicbrainz-devel
 BuildRequires:	libalsa-devel
 BuildRequires:	sqlite3-devel
 BuildRequires:	sidplay-devel
