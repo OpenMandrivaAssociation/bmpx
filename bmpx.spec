@@ -5,7 +5,7 @@
 %if %build_plf
 %define distsuffix plf
 %endif
-%define pre pre2
+%define pre pre3
 %if %pre
 %define rel 0.%pre.1
 %define fname %name-%version%pre
@@ -46,11 +46,11 @@ BuildRequires:	gamin-devel
 BuildRequires:	ImageMagick
 BuildRequires:	curl-devel
 BuildRequires:	neon0.26-devel
-BuildRequires:	libmusicbrainz-devel
 BuildRequires:	libalsa-devel
 BuildRequires:	sqlite3-devel
 BuildRequires:	sidplay-devel
 BuildRequires:  libofa-devel
+BuildRequires:  libsexymm-devel
 #BuildRequires:  gaim-devel
 BuildRequires:	flex bison
 BuildRequires:	zip
@@ -97,6 +97,7 @@ Devel library for BMPX.
 %setup -q -n %fname
 
 %build
+export CPPFLAGS="-I%_includedir/libsexymm"
 %configure2_5x --enable-hal --enable-ofa --enable-sid \
 %if %build_plf
  --enable-mp4v2 --enable-moodriver
@@ -187,7 +188,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/bmpx/
 %_libexecdir/beep-media-player-2-bin
 %_libexecdir/beep-media-player-2-sentinel
-%_includedir/bmp-2.0/
+#%_includedir/bmp-2.0/
 %_libdir/pkgconfig/*.pc
 
 
