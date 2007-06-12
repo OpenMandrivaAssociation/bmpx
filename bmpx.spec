@@ -5,7 +5,7 @@
 %if %build_plf
 %define distsuffix plf
 %endif
-%define pre pre3
+%define pre pre4
 %if %pre
 %define rel 0.%pre.1
 %define fname %name-%version%pre
