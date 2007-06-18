@@ -5,10 +5,10 @@
 %if %build_plf
 %define distsuffix plf
 %endif
-%define pre RC1
+%define pre rc1
 %if %pre
 %define rel 0.%pre.1
-%define fname %name-%version%pre
+%define fname %name-%{version}RC1
 %else
 %define rel 1
 %define fname %name-%version
