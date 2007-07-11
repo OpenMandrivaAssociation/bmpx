@@ -5,10 +5,10 @@
 %if %build_plf
 %define distsuffix plf
 %endif
-%define pre rc1
+%define pre rc2
 %if %pre
 %define rel 0.%pre.1
-%define fname %name-%{version}RC1
+%define fname %name-%{version}RC2
 %else
 %define rel 1
 %define fname %name-%version
@@ -52,6 +52,8 @@ BuildRequires:	sqlite3-devel
 BuildRequires:	sidplay-devel
 BuildRequires:  libofa-devel
 BuildRequires:  libsexymm-devel
+BuildRequires:  libgnome-vfs2-devel
+BuildRequires:  libGConf2-devel
 #BuildRequires:  gaim-devel
 BuildRequires:	flex bison
 BuildRequires:	zip
