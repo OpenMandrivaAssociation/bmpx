@@ -5,10 +5,10 @@
 %if %build_plf
 %define distsuffix plf
 %endif
-%define pre rc2
+%define pre rc3
 %if %pre
 %define rel 0.%pre.1
-%define fname %name-%{version}RC2
+%define fname %name-%{version}RC3
 %else
 %define rel 1
 %define fname %name-%version
@@ -32,9 +32,9 @@ Requires:	dbus-x11
 BuildRequires:	glib2-devel >= 2.10.0
 BuildRequires:	hal-devel
 BuildRequires:	dbus-glib-devel
+BuildRequires:	libsoup-devel
 BuildRequires:	libgstreamer-plugins-base-devel
 BuildRequires:	pygtk2.0-devel
-BuildRequires:	gtkmm2.4-devel
 BuildRequires:	librsvg-devel
 BuildRequires:	libglademm2.4-devel
 BuildRequires:	libboost-devel
