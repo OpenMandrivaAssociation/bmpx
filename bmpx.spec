@@ -1,11 +1,12 @@
 %define major 0
 %define libname %mklibname %name %major
+%define develname %mklibname -d %name
 %define build_plf 0
 %{?_with_plf: %{expand: %%global build_plf 1}}
 %if %build_plf
 %define distsuffix plf
 %endif
-%define pre rc3
+%define pre 0
 %if %pre
 %define rel 0.%pre.1
 %define fname %name-%{version}RC3
@@ -21,7 +22,7 @@ Release:	%mkrel %rel
 License:	GPL
 Group:		Sound
 URL:		http://beep-media-player.org/
-Source0:	http://files.beep-media-player.org/releases/0.36/%{fname}.tar.bz2
+Source0:	http://files.beep-media-player.org/releases/0.40/%{fname}.tar.bz2
 Requires:	gstreamer0.10-plugins-base
 Requires:	gstreamer0.10-plugins-good
 Requires:	gstreamer0.10-plugins-ugly
@@ -85,13 +86,14 @@ Group:		System/Libraries
 %description -n	%libname
 Library for BMPX.
 
-%package -n	%libname-devel
+%package -n	%develname
 Summary:	Devel library for BMPX
 Group:		Development/C
 Provides:	lib%name-devel = %version-%release
 Requires:	%libname = %version
+Obsoletes:	%libname-devel
 
-%description -n	%libname-devel
+%description -n	%develname
 Devel library for BMPX.
 
 %prep
@@ -113,18 +115,10 @@ rm -rf $RPM_BUILD_ROOT %name.lang
 %makeinstall_std
 mv %buildroot%_datadir/locale/th_TH %buildroot%_datadir/locale/th
 %find_lang %name
-mkdir -p %{buildroot}/%{_menudir}
-cat << EOF > %{buildroot}/%{_menudir}/%{name}
-?package(%name):command=" %{_bindir}/beep-media-player-2"\
- icon="%name.png" needs="X11" section="Multimedia/Sound"\
- mimetypes="audio/x-mp3;audio/x-ogg;application/x-ogg;audio/x-mpegurl;audio/x-wav"\
- title="BMPx" longtitle="Play music" xdg="true"
-EOF
 desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="X-MandrivaLinux-Multimedia-Sound" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/bmp-2.0.desktop
-
 
 mkdir -p %{buildroot}/{%{_liconsdir}/,%_iconsdir,%_miconsdir}
 ln -s %_datadir/icons/hicolor/48x48/apps/%name.png %{buildroot}/%{_liconsdir}/
@@ -183,7 +177,6 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/applications/bmp-2.0-offline.desktop
 %_datadir/icons/hicolor/48x48/apps/%name.png
 %_mandir/man1/beep-media-player-2.1*
-%{_menudir}/%{name}
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
@@ -192,5 +185,3 @@ rm -rf $RPM_BUILD_ROOT
 %_libexecdir/beep-media-player-2-sentinel
 #%_includedir/bmp-2.0/
 %_libdir/pkgconfig/*.pc
-
-
