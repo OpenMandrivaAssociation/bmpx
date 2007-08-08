@@ -117,8 +117,8 @@ mv %buildroot%_datadir/locale/th_TH %buildroot%_datadir/locale/th
 %find_lang %name
 desktop-file-install --vendor="" \
   --remove-category="Application" \
-  --add-category="X-MandrivaLinux-Multimedia-Sound" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/bmp-2.0.desktop
+  --add-category="Audio" \
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*.desktop
 
 mkdir -p %{buildroot}/{%{_liconsdir}/,%_iconsdir,%_miconsdir}
 ln -s %_datadir/icons/hicolor/48x48/apps/%name.png %{buildroot}/%{_liconsdir}/
@@ -183,5 +183,5 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/bmpx/
 %_libexecdir/beep-media-player-2-bin
 %_libexecdir/beep-media-player-2-sentinel
-#%_includedir/bmp-2.0/
+%_includedir/bmp-2.0/
 %_libdir/pkgconfig/*.pc
