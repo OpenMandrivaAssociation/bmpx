@@ -17,7 +17,7 @@
 
 Summary:	Next generation Beep Media Player
 Name:		bmpx
-Version:	0.40.0
+Version:	0.40.1
 Release:	%mkrel %rel
 License:	GPL
 Group:		Sound
