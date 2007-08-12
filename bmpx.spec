@@ -181,6 +181,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_liconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
 %_libdir/bmpx/
+%_libdir/libbmp_id3v2_reader.*
 %_libexecdir/beep-media-player-2-bin
 %_libexecdir/beep-media-player-2-sentinel
 %_includedir/bmp-2.0/
