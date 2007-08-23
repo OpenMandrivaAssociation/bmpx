@@ -11,7 +11,7 @@
 %define rel 0.%pre.1
 %define fname %name-%{version}RC3
 %else
-%define rel 1
+%define rel 2
 %define fname %name-%version
 %endif
 
@@ -91,7 +91,6 @@ Summary:	Devel library for BMPX
 Group:		Development/C
 Provides:	lib%name-devel = %version-%release
 Requires:	%libname = %version
-Obsoletes:	%libname-devel
 
 %description -n	%develname
 Devel library for BMPX.
@@ -181,8 +180,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_liconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
 %_libdir/bmpx/
-%_libdir/libbmp_id3v2_reader.*
 %_libexecdir/beep-media-player-2-bin
 %_libexecdir/beep-media-player-2-sentinel
+
+%files -n %libname
+%defattr(-,root,root)
+%_libdir/libbmp_id3v2_reader.so.%{major}*
+
+
+%files -n %develname
+%defattr(-,root,root)
+%_libdir/libbmp_id3v2_reader.so
+%_libdir/libbmp_id3v2_reader.la
 %_includedir/bmp-2.0/
 %_libdir/pkgconfig/*.pc
