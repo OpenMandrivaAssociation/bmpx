@@ -11,7 +11,7 @@
 %define rel 0.%pre.1
 %define fname %name-%{version}RC3
 %else
-%define rel 2
+%define rel 3
 %define fname %name-%version
 %endif
 
@@ -82,6 +82,7 @@ This package is in PLF as it violates some patents.
 %package -n	%libname
 Summary:	Library for BMPX
 Group:		System/Libraries
+Conflicts: %name < 0.40.1-2
 
 %description -n	%libname
 Library for BMPX.
