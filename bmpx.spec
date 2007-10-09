@@ -11,13 +11,13 @@
 %define rel 0.%pre.1
 %define fname %name-%{version}RC3
 %else
-%define rel 3
+%define rel 1
 %define fname %name-%version
 %endif
 
 Summary:	Next generation Beep Media Player
 Name:		bmpx
-Version:	0.40.1
+Version:	0.40.11
 Release:	%mkrel %rel
 License:	GPL
 Group:		Sound
