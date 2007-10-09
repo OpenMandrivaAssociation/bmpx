@@ -58,10 +58,12 @@ BuildRequires:  libGConf2-devel
 BuildRequires:	flex bison
 BuildRequires:	zip
 BuildRequires:	desktop-file-utils
+BuildRequires:  libxslt-proc
 %if %build_plf
 BuildRequires:	libmpeg4ip-devel
 BuildRequires:	libmoodriver-devel >= 0.20
 %endif
+Obsoletes:	%libname
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -79,19 +81,20 @@ This package is in PLF as it violates some patents.
 %endif
 
 
-%package -n	%libname
-Summary:	Library for BMPX
-Group:		System/Libraries
-Conflicts: %name < 0.40.1-2
+#%package -n	%libname
+#Summary:	Library for BMPX
+#Group:		System/Libraries
+#Conflicts: %name < 0.40.1-2
 
-%description -n	%libname
-Library for BMPX.
+#%description -n	%libname
+#Library for BMPX.
 
 %package -n	%develname
 Summary:	Devel library for BMPX
 Group:		Development/C
 Provides:	lib%name-devel = %version-%release
-Requires:	%libname = %version
+Provides:	%name-devel = %version-%release
+#Requires:	%libname = %version
 
 %description -n	%develname
 Devel library for BMPX.
@@ -165,14 +168,14 @@ rm -rf $RPM_BUILD_ROOT
 %doc README* ChangeLog AUTHORS
 %_bindir/bmp2
 %_bindir/beep-media-player-2
-%_bindir/bmp-enqueue-files-2.0
-%_bindir/bmp-enqueue-uris-2.0
+#%_bindir/bmp-enqueue-files-2.0
+#%_bindir/bmp-enqueue-uris-2.0
 %_bindir/bmp-play-files-2.0
-%_bindir/bmp-play-lastfm-2.0
+#%_bindir/bmp-play-lastfm-2.0
 %_datadir/dbus-1/services/*
 %_datadir/%name
 %_datadir/applications/bmp-2.0.desktop
-%_datadir/applications/bmp-enqueue-2.0.desktop
+#%_datadir/applications/bmp-enqueue-2.0.desktop
 %_datadir/applications/bmp-play-2.0.desktop
 %_datadir/applications/bmp-2.0-offline.desktop
 %_datadir/icons/hicolor/48x48/apps/%name.png
@@ -184,14 +187,14 @@ rm -rf $RPM_BUILD_ROOT
 %_libexecdir/beep-media-player-2-bin
 %_libexecdir/beep-media-player-2-sentinel
 
-%files -n %libname
-%defattr(-,root,root)
-%_libdir/libbmp_id3v2_reader.so.%{major}*
+#%files -n %libname
+#%defattr(-,root,root)
+#%_libdir/libbmp_id3v2_reader.so.%{major}*
 
 
 %files -n %develname
 %defattr(-,root,root)
-%_libdir/libbmp_id3v2_reader.so
-%_libdir/libbmp_id3v2_reader.la
+#%_libdir/libbmp_id3v2_reader.so
+#%_libdir/libbmp_id3v2_reader.la
 %_includedir/bmp-2.0/
 %_libdir/pkgconfig/*.pc
