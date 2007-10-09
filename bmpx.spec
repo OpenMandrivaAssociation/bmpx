@@ -146,9 +146,9 @@ associate BMP with lastfm:// URIs
 EOF
 
 
-%post -n %libname -p /sbin/ldconfig
+#%post -n %libname -p /sbin/ldconfig
 
-%postun -n %libname -p /sbin/ldconfig
+#%postun -n %libname -p /sbin/ldconfig
 
 %post
 %update_menus
