@@ -171,6 +171,7 @@ rm -rf $RPM_BUILD_ROOT
 #%_bindir/bmp-enqueue-files-2.0
 #%_bindir/bmp-enqueue-uris-2.0
 %_bindir/bmp-play-files-2.0
+%_bindir/bmp-play-uris-2.0
 #%_bindir/bmp-play-lastfm-2.0
 %_datadir/dbus-1/services/*
 %_datadir/%name
