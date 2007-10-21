@@ -38,7 +38,7 @@ BuildRequires:	libgstreamer-plugins-base-devel
 BuildRequires:	pygtk2.0-devel
 BuildRequires:	librsvg-devel
 BuildRequires:	libglademm2.4-devel
-BuildRequires:	libboost-devel
+BuildRequires:	boost-devel
 BuildRequires:	libsm-devel
 BuildRequires:	startup-notification-devel
 BuildRequires:	libcdda-devel
