@@ -106,6 +106,9 @@ Devel library for BMPX.
 %build
 export CPPFLAGS="-I%_includedir/libsexymm"
 %configure2_5x --enable-hal --enable-ofa --enable-sid \
+ --with-boost-filesystem=boost_filesystem-gcc42 \
+ --with-boost-regex=boost_regex-gcc42 \
+ --with-boost-iostreams=boost_iostreams-gcc42 \
 %if %build_plf
  --enable-mp4v2 --enable-moodriver
 %endif
