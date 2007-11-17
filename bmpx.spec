@@ -11,7 +11,7 @@
 %define rel 0.%pre.1
 %define fname %name-%{version}RC3
 %else
-%define rel 3
+%define rel 4
 %define fname %name-%version
 %endif
 
