@@ -66,6 +66,7 @@ BuildRequires:	libmoodriver-devel >= 0.20
 Obsoletes:	%libname
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 BMPx is the codename for the next-generation BMP. In general, users of
