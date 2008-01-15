@@ -23,6 +23,7 @@ License:	GPL
 Group:		Sound
 URL:		http://beep-media-player.org/
 Source0:	http://files.beep-media-player.org/releases/0.40/%{fname}.tar.bz2
+Patch0:		bmpx-0.40.13-const-gchar.patch
 Requires:	gstreamer0.10-plugins-base
 Requires:	gstreamer0.10-plugins-good
 Requires:	gstreamer0.10-plugins-ugly
@@ -102,6 +103,7 @@ Devel library for BMPX.
 %prep
 
 %setup -q -n %fname
+%patch0 -p1 -b .const-gchar
 
 %build
 export CPPFLAGS="-I%_includedir/libsexymm"
