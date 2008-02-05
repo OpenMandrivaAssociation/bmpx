@@ -35,7 +35,7 @@ Requires:	dbus-x11
 BuildRequires:	glib2-devel >= 2.10.0
 BuildRequires:	hal-devel
 BuildRequires:	dbus-glib-devel
-BuildRequires:	libsoup-devel
+BuildRequires:	libsoup-2.2-devel
 BuildRequires:	libgstreamer-plugins-base-devel
 BuildRequires:	pygtk2.0-devel
 BuildRequires:	librsvg-devel
