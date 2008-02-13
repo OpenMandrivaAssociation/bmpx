@@ -21,8 +21,8 @@ Version:	0.40.13
 Release:	%mkrel %rel
 License:	GPL
 Group:		Sound
-URL:		http://beep-media-player.org/
-Source0:	http://files.beep-media-player.org/releases/0.40/%{fname}.tar.bz2
+URL:		http://bmpx.backtrace.info/site/BMPx_Homepage
+Source0:	http://files.backtrace.info/releases/0.40/%{fname}.tar.bz2
 Patch0:		bmpx-0.40.13-const-gchar.patch
 Patch1:		bmpx-0.40.13-no-gsd-spawn.patch
 Requires:	gstreamer0.10-plugins-base
