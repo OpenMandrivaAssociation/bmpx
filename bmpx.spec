@@ -11,7 +11,7 @@
 %define rel 0.%pre.1
 %define fname %name-%{version}RC3
 %else
-%define rel 6
+%define rel 7
 %define fname %name-%version
 %endif
 
@@ -61,8 +61,8 @@ BuildRequires:	flex bison
 BuildRequires:	zip
 BuildRequires:	desktop-file-utils
 BuildRequires:  libxslt-proc
+BuildRequires:	libmp4v2-devel
 %if %build_plf
-BuildRequires:	libmpeg4ip-devel
 BuildRequires:	libmoodriver-devel >= 0.20
 %endif
 Obsoletes:	%libname
@@ -79,7 +79,7 @@ the playback backend. A few utility functions and miscellaneous stuff
 has been taken from the old codebase.
 
 %if %build_plf
-This package is in PLF as it violates some patents.
+This package is in PLF as it contains file sharing software.
 %endif
 
 
@@ -110,8 +110,9 @@ Devel library for BMPX.
 %build
 export CPPFLAGS="-I%_includedir/libsexymm"
 %configure2_5x --enable-hal --enable-ofa --enable-sid \
+ --enable-mp4v2 \
 %if %build_plf
- --enable-mp4v2 --enable-moodriver
+--enable-moodriver
 %endif
 #--enable-gaim
 
