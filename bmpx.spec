@@ -1,30 +1,24 @@
 %define major 0
 %define libname %mklibname %name %major
 %define develname %mklibname -d %name
-%define build_plf 0
-%{?_with_plf: %{expand: %%global build_plf 1}}
-%if %build_plf
-%define distsuffix plf
-%endif
 %define pre 0
 %if %pre
 %define rel 0.%pre.1
 %define fname %name-%{version}RC3
 %else
-%define rel 7
+%define rel 1
 %define fname %name-%version
 %endif
 
 Summary:	Next generation Beep Media Player
 Name:		bmpx
-Version:	0.40.13
+Version:	0.40.14
 Release:	%mkrel %rel
 License:	GPL
 Group:		Sound
 URL:		http://bmpx.backtrace.info/site/BMPx_Homepage
 Source0:	http://files.backtrace.info/releases/0.40/%{fname}.tar.bz2
-Patch0:		bmpx-0.40.13-const-gchar.patch
-Patch1:		bmpx-0.40.13-no-gsd-spawn.patch
+Patch1:		bmpx-0.40.14-no-gsd-spawn.patch
 Requires:	gstreamer0.10-plugins-base
 Requires:	gstreamer0.10-plugins-good
 Requires:	gstreamer0.10-plugins-ugly
@@ -43,7 +37,7 @@ BuildRequires:	libglademm2.4-devel
 BuildRequires:	boost-devel
 BuildRequires:	libsm-devel
 BuildRequires:	startup-notification-devel
-BuildRequires:	libcdda-devel
+BuildRequires:	libcdio-devel
 BuildRequires:	taglib-devel
 BuildRequires:	gamin-devel
 BuildRequires:	ImageMagick
@@ -61,10 +55,6 @@ BuildRequires:	flex bison
 BuildRequires:	zip
 BuildRequires:	desktop-file-utils
 BuildRequires:  libxslt-proc
-BuildRequires:	libmp4v2-devel
-%if %build_plf
-BuildRequires:	libmoodriver-devel >= 0.20
-%endif
 Obsoletes:	%libname
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
@@ -77,11 +67,6 @@ will be new features and usage semantics changes as well. The code has
 been rewritten ~95% from scratch, including the skinning engine and
 the playback backend. A few utility functions and miscellaneous stuff
 has been taken from the old codebase.
-
-%if %build_plf
-This package is in PLF as it contains file sharing software.
-%endif
-
 
 #%package -n	%libname
 #Summary:	Library for BMPX
@@ -104,16 +89,13 @@ Devel library for BMPX.
 %prep
 
 %setup -q -n %fname
-%patch0 -p1 -b .const-gchar
 %patch1 -p1 -b .no-gsd-spawn
 
 %build
 export CPPFLAGS="-I%_includedir/libsexymm"
 %configure2_5x --enable-hal --enable-ofa --enable-sid \
  --enable-mp4v2 \
-%if %build_plf
---enable-moodriver
-%endif
+
 #--enable-gaim
 
 %make
@@ -124,9 +106,8 @@ rm -rf $RPM_BUILD_ROOT %name.lang
 mv %buildroot%_datadir/locale/th_TH %buildroot%_datadir/locale/th
 %find_lang %name
 desktop-file-install --vendor="" \
-  --remove-category="Application" \
   --add-category="Audio" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*.desktop
+  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/{bmp-2.0,bmp-2.0-offline}.desktop
 
 mkdir -p %{buildroot}/{%{_liconsdir}/,%_iconsdir,%_miconsdir}
 ln -s %_datadir/icons/hicolor/48x48/apps/%name.png %{buildroot}/%{_liconsdir}/
