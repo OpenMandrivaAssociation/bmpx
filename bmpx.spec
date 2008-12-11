@@ -40,7 +40,7 @@ BuildRequires:	startup-notification-devel
 BuildRequires:	libcdio-devel
 BuildRequires:	taglib-devel
 BuildRequires:	gamin-devel
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 BuildRequires:	curl-devel
 BuildRequires:  libmusicbrainz-devel
 BuildRequires:	libalsa-devel
