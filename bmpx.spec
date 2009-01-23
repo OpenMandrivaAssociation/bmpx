@@ -6,7 +6,7 @@
 %define rel 0.%pre.3
 %define fname %name-%{version}RC3
 %else
-%define rel 3
+%define rel 4
 %define fname %name-%version
 %endif
 
@@ -18,7 +18,9 @@ License:	GPL
 Group:		Sound
 URL:		http://bmpx.backtrace.info/site/BMPx_Homepage
 Source0:	http://files.backtrace.info/releases/0.40/%{fname}.tar.bz2
+Patch:		bmpx-0.40.14-format-strings.patch
 Patch1:		bmpx-0.40.14-no-gsd-spawn.patch
+Patch2:		bmpx-0.40.14-new-cairomm.patch
 Requires:	gstreamer0.10-plugins-base
 Requires:	gstreamer0.10-plugins-good
 Requires:	gstreamer0.10-plugins-ugly
@@ -89,7 +91,9 @@ Devel library for BMPX.
 %prep
 
 %setup -q -n %fname
+%patch -p1
 %patch1 -p1 -b .no-gsd-spawn
+%patch2 -p1
 
 %build
 export CPPFLAGS="-I%_includedir/libsexymm"
