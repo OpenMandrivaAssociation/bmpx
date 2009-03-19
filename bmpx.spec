@@ -3,7 +3,7 @@
 %define develname %mklibname -d %name
 %define pre 0
 %if %pre
-%define rel 0.%pre.3
+%define rel 0.%pre.4
 %define fname %name-%{version}RC3
 %else
 %define rel 4
