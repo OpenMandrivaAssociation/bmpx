@@ -3,10 +3,10 @@
 %define develname %mklibname -d %name
 %define pre 0
 %if %pre
-%define rel 0.%pre.5
+%define rel 0.%pre.1
 %define fname %name-%{version}RC3
 %else
-%define rel 4
+%define rel 5
 %define fname %name-%version
 %endif
 
@@ -14,7 +14,7 @@ Summary:	Next generation Beep Media Player
 Name:		bmpx
 Version:	0.40.14
 Release:	%mkrel %rel
-License:	GPL
+License:	GPLv2+
 Group:		Sound
 URL:		http://bmpx.backtrace.info/site/BMPx_Homepage
 Source0:	http://files.backtrace.info/releases/0.40/%{fname}.tar.bz2
