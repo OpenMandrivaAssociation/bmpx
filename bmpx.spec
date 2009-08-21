@@ -22,6 +22,7 @@ Patch:		bmpx-0.40.14-format-strings.patch
 Patch1:		bmpx-0.40.14-no-gsd-spawn.patch
 Patch2:		bmpx-0.40.14-new-cairomm.patch
 Patch3:		bmpx-0.40.14-compile.patch
+Patch4:		bmpx-0.40.14-libsoup24.patch
 Requires:	gstreamer0.10-plugins-base
 Requires:	gstreamer0.10-plugins-good
 Requires:	gstreamer0.10-plugins-ugly
@@ -32,7 +33,7 @@ Requires:	dbus-x11
 BuildRequires:	glib2-devel >= 2.10.0
 BuildRequires:	hal-devel
 BuildRequires:	dbus-glib-devel
-BuildRequires:	libsoup-2.2-devel
+BuildRequires:	libsoup-devel
 BuildRequires:	libgstreamer-plugins-base-devel
 BuildRequires:	pygtk2.0-devel
 BuildRequires:	librsvg-devel
@@ -53,6 +54,7 @@ BuildRequires:  libofa-devel
 BuildRequires:  libsexymm-devel
 BuildRequires:  libgnome-vfs2-devel
 BuildRequires:  libGConf2-devel
+BuildRequires:	intltool
 #BuildRequires:  gaim-devel
 BuildRequires:	flex bison
 BuildRequires:	zip
@@ -71,39 +73,26 @@ been rewritten ~95% from scratch, including the skinning engine and
 the playback backend. A few utility functions and miscellaneous stuff
 has been taken from the old codebase.
 
-#%package -n	%libname
-#Summary:	Library for BMPX
-#Group:		System/Libraries
-#Conflicts: %name < 0.40.1-2
-
-#%description -n	%libname
-#Library for BMPX.
-
 %package -n	%develname
 Summary:	Devel library for BMPX
 Group:		Development/C
 Provides:	lib%name-devel = %version-%release
 Provides:	%name-devel = %version-%release
-#Requires:	%libname = %version
 
 %description -n	%develname
 Devel library for BMPX.
 
 %prep
-
 %setup -q -n %fname
 %patch -p1
 %patch1 -p1 -b .no-gsd-spawn
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
-export CPPFLAGS="-I%_includedir/libsexymm"
-%configure2_5x --enable-hal --enable-ofa --enable-sid \
- --enable-mp4v2 \
-
-#--enable-gaim
-
+autoreconf -fi
+%configure2_5x --enable-hal --enable-sid
 %make
 
 %install
@@ -137,11 +126,6 @@ Run 'firefox %_datadir/%name/bmp.xpi' to install the BMP-LastFM extension to
 associate BMP with lastfm:// URIs
 EOF
 
-
-#%post -n %libname -p /sbin/ldconfig
-
-#%postun -n %libname -p /sbin/ldconfig
-
 %if %mdkversion < 200900
 %post
 %update_menus
@@ -164,15 +148,11 @@ rm -rf $RPM_BUILD_ROOT
 %doc README* ChangeLog AUTHORS
 %_bindir/bmp2
 %_bindir/beep-media-player-2
-#%_bindir/bmp-enqueue-files-2.0
-#%_bindir/bmp-enqueue-uris-2.0
 %_bindir/bmp-play-files-2.0
 %_bindir/bmp-play-uris-2.0
-#%_bindir/bmp-play-lastfm-2.0
 %_datadir/dbus-1/services/*
 %_datadir/%name
 %_datadir/applications/bmp-2.0.desktop
-#%_datadir/applications/bmp-enqueue-2.0.desktop
 %_datadir/applications/bmp-play-2.0.desktop
 %_datadir/applications/bmp-2.0-offline.desktop
 %_datadir/icons/hicolor/48x48/apps/%name.png
@@ -184,14 +164,7 @@ rm -rf $RPM_BUILD_ROOT
 %_libexecdir/beep-media-player-2-bin
 %_libexecdir/beep-media-player-2-sentinel
 
-#%files -n %libname
-#%defattr(-,root,root)
-#%_libdir/libbmp_id3v2_reader.so.%{major}*
-
-
 %files -n %develname
 %defattr(-,root,root)
-#%_libdir/libbmp_id3v2_reader.so
-#%_libdir/libbmp_id3v2_reader.la
 %_includedir/bmp-2.0/
 %_libdir/pkgconfig/*.pc
