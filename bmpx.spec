@@ -6,7 +6,7 @@
 %define rel 0.%pre.1
 %define fname %name-%{version}RC3
 %else
-%define rel 6
+%define rel 7
 %define fname %name-%version
 %endif
 
@@ -118,13 +118,6 @@ rm -f %{buildroot}%{_datadir}/locale/locale.alias
 
 # broken symlink
 ln -sf beep-media-player-2 %buildroot%_bindir/bmp2
-
-# gw install firefox extension manually
-install -m 644 xpi/bmp.xpi %buildroot%_datadir/%name/
-cat > README.urpmi << EOF
-Run 'firefox %_datadir/%name/bmp.xpi' to install the BMP-LastFM extension to
-associate BMP with lastfm:// URIs
-EOF
 
 %if %mdkversion < 200900
 %post
