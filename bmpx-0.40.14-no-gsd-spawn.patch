@@ -1,0 +1,56 @@
+diff -p -up bmpx-0.40.14/src/shell.cc.no-gsd-spawn bmpx-0.40.14/src/shell.cc
+--- bmpx-0.40.14/src/shell.cc.no-gsd-spawn	2008-04-06 17:39:24.000000000 +0200
++++ bmpx-0.40.14/src/shell.cc	2008-04-11 09:03:46.000000000 +0200
+@@ -4805,6 +4805,13 @@ namespace Bmp
+   }
+ 
+   /*static*/ void
++  PlayerShell::proxy_destroy (DBusGProxy *proxy, gpointer data)
++  {
++    PlayerShell & shell = *reinterpret_cast<PlayerShell*>(data);
++    shell.m_mmkeys_dbusproxy = NULL;
++  }
++
++  /*static*/ void
+   PlayerShell::mmkeys_activate ()
+   {
+     if( mm_active )
+@@ -4821,13 +4828,21 @@ namespace Bmp
+       {
+         GError *error = NULL;
+ 
+-        m_mmkeys_dbusproxy = dbus_g_proxy_new_for_name (bus,
++        m_mmkeys_dbusproxy = dbus_g_proxy_new_for_name_owner (bus,
+             "org.gnome.SettingsDaemon",
+             "/org/gnome/SettingsDaemon",
+-            "org.gnome.SettingsDaemon");
+-
+-        if (m_mmkeys_dbusproxy)
++	    "org.gnome.SettingsDaemon", &error);
++	if (error != NULL) {
++	  g_warning(G_STRLOC ": org.gnome.SettingsDaemon dbus service not found");
++	  g_error_free (error);
++	}
++        else if (m_mmkeys_dbusproxy)
+         {
++ 	  g_object_connect (m_mmkeys_dbusproxy,
++ 			    "signal::destroy",
++ 			    G_CALLBACK (proxy_destroy),
++ 			    this,
++ 			    NULL);
+           dbus_g_proxy_call (m_mmkeys_dbusproxy,
+                  "GrabMediaPlayerKeys", &error,
+                  G_TYPE_STRING, "Rhythmbox",
+diff -p -up bmpx-0.40.14/src/shell.hh.no-gsd-spawn bmpx-0.40.14/src/shell.hh
+--- bmpx-0.40.14/src/shell.hh.no-gsd-spawn	2008-03-05 22:31:06.000000000 +0100
++++ bmpx-0.40.14/src/shell.hh	2008-04-11 09:00:15.000000000 +0200
+@@ -395,6 +395,9 @@ namespace Bmp
+ 
+       guint m_capslock_mask, m_numlock_mask, m_scrolllock_mask;
+ 
++      static void
++      proxy_destroy (DBusGProxy *proxy, gpointer data);
++
+       void
+       mmkeys_activate ();
+ 

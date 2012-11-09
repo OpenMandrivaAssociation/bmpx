@@ -1,0 +1,21 @@
+diff -p -up bmpx-0.40.14/remote/beep-media-player-2.cc~ bmpx-0.40.14/remote/beep-media-player-2.cc
+--- bmpx-0.40.14/remote/beep-media-player-2.cc~	2008-03-05 22:31:12.000000000 +0100
++++ bmpx-0.40.14/remote/beep-media-player-2.cc	2009-01-23 11:29:16.000000000 +0100
+@@ -183,7 +183,7 @@ namespace
+            PREFIX,
+            _("/libexec/beep-media-player-2-bin --no-log'\n       for further information on what could have caused the crash\n"),
+            _("       and report it to our IRC channel, #bmp on irc.freenode.net\n\n"), NULL);
+-        g_printf (message);
++        g_printf ("%s", message);
+         g_free (message);
+       }
+     else
+@@ -296,7 +296,7 @@ main (int    argc,
+       else
+         message = (error_fmt % _("(Unknown error. Perhaps DBus is not running at all?)")).str ();
+ 
+-      GtkWidget *dialog = gtk_message_dialog_new_with_markup (NULL, GtkDialogFlags (0), GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, message.c_str ());
++      GtkWidget *dialog = gtk_message_dialog_new_with_markup (NULL, GtkDialogFlags (0), GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", message.c_str ());
+ 
+       if (error)
+       {
