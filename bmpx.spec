@@ -16,7 +16,7 @@ Version:	0.40.14
 Release:	%mkrel %rel
 License:	GPLv2+
 Group:		Sound
-URL:		http://bmpx.backtrace.info/site/BMPx_Homepage
+URL:		https://bmpx.backtrace.info/site/BMPx_Homepage
 Source0:	http://files.backtrace.info/releases/0.40/%{fname}.tar.bz2
 Patch:		bmpx-0.40.14-format-strings.patch
 Patch1:		bmpx-0.40.14-no-gsd-spawn.patch
