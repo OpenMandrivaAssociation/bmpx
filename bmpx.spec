@@ -30,6 +30,11 @@ Requires:	gstreamer0.10-gnomevfs
 Requires:	pygtk2.0
 Requires:	dbus-python
 Requires:	dbus-x11
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	glib2-devel >= 2.10.0
 BuildRequires:	hal-devel
 BuildRequires:	dbus-glib-devel
