@@ -13,7 +13,7 @@
 Summary:	Next generation Beep Media Player
 Name:		bmpx
 Version:	0.40.14
-Release:	%mkrel %rel
+Release:	%rel.1
 License:	GPLv2+
 Group:		Sound
 URL:		https://bmpx.backtrace.info/site/BMPx_Homepage
